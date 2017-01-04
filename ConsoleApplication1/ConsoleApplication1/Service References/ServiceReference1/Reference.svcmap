@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1e19e2ad-eaae-4df0-b88e-7ed5162ef7c5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8583/microtef?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="microtef.xsd" MetadataType="Schema" ID="dfffa1ff-641f-415e-b29b-3b1b892218f9" SourceId="1" SourceUrl="http://localhost:8583/microtef?xsd=xsd0" />
+    <MetadataFile FileName="microtef1.xsd" MetadataType="Schema" ID="29ae401a-d634-427a-b667-3dda4b09735d" SourceId="1" SourceUrl="http://localhost:8583/microtef?xsd=xsd1" />
+    <MetadataFile FileName="microtef2.xsd" MetadataType="Schema" ID="593871a2-dd83-4d59-8690-c9c99aa6837d" SourceId="1" SourceUrl="http://localhost:8583/microtef?xsd=xsd2" />
+    <MetadataFile FileName="microtef3.xsd" MetadataType="Schema" ID="42887344-5192-4120-85c4-4ad5109c7534" SourceId="1" SourceUrl="http://localhost:8583/microtef?xsd=xsd5" />
+    <MetadataFile FileName="MicrotefServiceProxy.wsdl" MetadataType="Wsdl" ID="e92ca1ff-6bdb-40ef-b1a7-4b53e89faa87" SourceId="1" SourceUrl="http://localhost:8583/microtef?wsdl" />
+    <MetadataFile FileName="microtef4.xsd" MetadataType="Schema" ID="4728ed39-36c1-4e64-bbac-28d3e8a24b4e" SourceId="1" SourceUrl="http://localhost:8583/microtef?xsd=xsd4" />
+    <MetadataFile FileName="microtef5.xsd" MetadataType="Schema" ID="1c752035-8ca0-41b5-9c27-c2b2c09c0145" SourceId="1" SourceUrl="http://localhost:8583/microtef?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8583/microtef?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" />
+  <xs:complexType name="GetOneOrFirstPinpadResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="CardPaymentAuthorizer" nillable="true" type="q1:CardPaymentAuthorizerContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetOneOrFirstPinpadResponse" nillable="true" type="tns:GetOneOrFirstPinpadResponse" />
+  <xs:complexType name="AbstractResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Failure" type="xs:boolean" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="OperationErrors" nillable="true" type="q2:ArrayOfErrorReport" />
+      <xs:element minOccurs="0" name="RequestKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AbstractResponse" nillable="true" type="tns:AbstractResponse" />
+  <xs:complexType name="GetAllPinpadsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="CardPaymentAuthorizerCollection" nillable="true" type="q3:ArrayOfCardPaymentAuthorizerContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAllPinpadsResponse" nillable="true" type="tns:GetAllPinpadsResponse" />
+  <xs:complexType name="RetrieveAvailableDeviceResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="CardPaymentAuthorizer" nillable="true" type="q4:CardPaymentAuthorizerContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RetrieveAvailableDeviceResponse" nillable="true" type="tns:RetrieveAvailableDeviceResponse" />
+  <xs:complexType name="RetrieveAvailableDevicesResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="CardPaymentAuthorizerCollection" nillable="true" type="q5:ArrayOfCardPaymentAuthorizerContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RetrieveAvailableDevicesResponse" nillable="true" type="tns:RetrieveAvailableDevicesResponse" />
+  <xs:complexType name="PingResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsConnected" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PingResponse" nillable="true" type="tns:PingResponse" />
+  <xs:complexType name="OpenPinpadConnectionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsOpened" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="OpenPinpadConnectionResponse" nillable="true" type="tns:OpenPinpadConnectionResponse" />
+  <xs:complexType name="ClosePinpadConnectionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsClosed" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ClosePinpadConnectionResponse" nillable="true" type="tns:ClosePinpadConnectionResponse" />
+  <xs:complexType name="CancelPinpadCommandResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="WasCancelled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CancelPinpadCommandResponse" nillable="true" type="tns:CancelPinpadCommandResponse" />
+  <xs:complexType name="ShowMessageResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="WasDisplayed" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ShowMessageResponse" nillable="true" type="tns:ShowMessageResponse" />
+  <xs:complexType name="GetSecurePanResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MaskedPan" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetSecurePanResponse" nillable="true" type="tns:GetSecurePanResponse" />
+  <xs:complexType name="GetKeyResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="KeyPressed" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetKeyResponse" nillable="true" type="tns:GetKeyResponse" />
+  <xs:complexType name="GetNumericInputResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Input" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetNumericInputResponse" nillable="true" type="tns:GetNumericInputResponse" />
+  <xs:complexType name="GetAmountResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" nillable="true" type="xs:decimal" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetAmountResponse" nillable="true" type="tns:GetAmountResponse" />
+  <xs:complexType name="GetNumericValueInRangeResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetNumericValueInRangeResponse" nillable="true" type="tns:GetNumericValueInRangeResponse" />
+  <xs:complexType name="GetNumericValueInOptionsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:short" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetNumericValueInOptionsResponse" nillable="true" type="tns:GetNumericValueInOptionsResponse" />
+  <xs:complexType name="GetTextValueInOptionsResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetTextValueInOptionsResponse" nillable="true" type="tns:GetTextValueInOptionsResponse" />
+  <xs:complexType name="ChangeDataPickerKeysResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ChangeDataPickerKeysResponse" nillable="true" type="tns:ChangeDataPickerKeysResponse" />
+  <xs:complexType name="AuthorizationResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="AuthorizationReport" nillable="true" type="q6:AuthorizationReportContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AuthorizationResponse" nillable="true" type="tns:AuthorizationResponse" />
+  <xs:complexType name="CancelResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="CancellationReport" nillable="true" type="q7:CancellationReportContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CancelResponse" nillable="true" type="tns:CancelResponse" />
+  <xs:complexType name="ReadCardResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="Card" nillable="true" type="q8:CardContract" />
+          <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="Transaction" nillable="true" type="q9:TransactionContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadCardResponse" nillable="true" type="tns:ReadCardResponse" />
+  <xs:complexType name="ReadPasswordResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="Card" nillable="true" type="q10:CardContract" />
+          <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="Password" nillable="true" type="q11:PasswordContract" />
+          <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="Transaction" nillable="true" type="q12:TransactionContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReadPasswordResponse" nillable="true" type="tns:ReadPasswordResponse" />
+  <xs:complexType name="SendAuthorizationResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="AuthorizationReport" nillable="true" type="q13:AuthorizationReportContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SendAuthorizationResponse" nillable="true" type="tns:SendAuthorizationResponse" />
+  <xs:complexType name="CompletionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="WasApproved" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CompletionResponse" nillable="true" type="tns:CompletionResponse" />
+  <xs:complexType name="ActivationResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AbstractResponse">
+        <xs:sequence>
+          <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Microtef.Wcf.DataContract" minOccurs="0" name="ActivationReport" nillable="true" type="q14:ActivationReportContract" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ActivationResponse" nillable="true" type="tns:ActivationResponse" />
+</xs:schema>
