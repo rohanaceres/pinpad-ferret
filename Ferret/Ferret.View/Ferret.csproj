@@ -154,9 +154,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ferret-icon.ico" />
   </ItemGroup>
   <ItemGroup>
