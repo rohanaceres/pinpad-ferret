@@ -135,11 +135,13 @@
   <ItemGroup>
     <Compile Include="CommandParser\Base\IOptions.cs" />
     <Compile Include="CommandParser\Commander.cs" />
+    <Compile Include="CommandParser\Option\AcquirerVerifierOptions.cs" />
     <Compile Include="CommandParser\Option\ClearOptions.cs" />
     <Compile Include="Core\ServiceFactory.cs" />
     <Compile Include="CommandParser\Option\ConnectionOptions.cs" />
     <Compile Include="CommandParser\Option\ScanOptions.cs" />
     <Compile Include="Core\Base\IPinpadService.cs" />
+    <Compile Include="Core\Services\AcquirerVerifier.cs" />
     <Compile Include="Core\Services\PinpadConnectionService.cs" />
     <Compile Include="Core\Ferret.cs" />
     <Compile Include="Core\Services\PinpadScanService.cs" />
