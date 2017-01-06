@@ -85,6 +85,8 @@ namespace Ferret.View.Core.Services
                     // TODO: Mapear dados.
                 }
             }
+
+            return new Acquirer();
         }
         private bool Validate()
         {

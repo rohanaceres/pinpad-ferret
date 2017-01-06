@@ -11,10 +11,21 @@ using Ferret.View.Extensions;
 
 namespace Ferret.View.Core.Services
 {
+    /// <summary>
+    /// Connects to one or more pinpads attached to the machine.
+    /// </summary>
     internal sealed class PinpadConnectionService : IPinpadService
     {
+        /// <summary>
+        /// Define the set of arguments that should be filled to connect to one 
+        /// or more pinpads.
+        /// </summary>
         public IOptions Options { get; private set; } = new ConnectionOptions();
 
+        /// <summary>
+        /// Connects to one or more pinpads.
+        /// Adds the pinpad(s) connected to the IoC.
+        /// </summary>
         public void Execute()
         {
             ConnectionOptions connOptions = this.Options as ConnectionOptions;

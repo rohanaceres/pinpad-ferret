@@ -5,16 +5,31 @@ using System;
 
 namespace Ferret.View
 {
+    /// <summary>
+    /// Responsible for read commands and act accordingly.
+    /// </summary>
     internal sealed class Ferret
     {
+        /// <summary>
+        /// Responsible for chose the right strategy to a specific command.
+        /// </summary>
         public static Commander Commander { get; set; } = new Commander();
+        /// <summary>
+        /// Inversion of Control and Dependency Injection container.
+        /// </summary>
         public static IWindsorContainer Container { get; set; } = new WindsorContainer();
 
+        /// <summary>
+        /// Initialize desktop assets to Microtef SDK.
+        /// </summary>
         static Ferret()
         {
             DesktopInitializer.Initialize();
         }
 
+        /// <summary>
+        /// Begin to read commands.
+        /// </summary>
         public static void DoIt ()
         {
             bool finish = false;
