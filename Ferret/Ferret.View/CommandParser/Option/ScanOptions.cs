@@ -1,6 +1,5 @@
 ﻿using CommandLine;
 using Ferret.View.CommandParser.Base;
-using System.Collections.Generic;
 
 namespace Ferret.View.CommandParser.Options
 {
@@ -10,7 +9,11 @@ namespace Ferret.View.CommandParser.Options
         public bool Scan { get; set; }
         [Option("all", Required = false)]
         public bool ScanAll { get; set; }
-        [Option('r', "ranges", Required = false)]
+        [Option('p', "port")]
+        public string PinpadToScanConnectionName { get; set; }
+        [OptionArray('r', "ranges", Required = false)]
         public int[] Ranges { get; set; }
+        [Option('l', "log", Required = false)]
+        public bool ShowProgress { get; set; }
     }
 }

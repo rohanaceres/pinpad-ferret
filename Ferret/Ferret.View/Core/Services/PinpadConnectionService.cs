@@ -45,7 +45,7 @@ namespace Ferret.View.Core.Services
                                  .Instance(authorizers)
                         );
 
-                authorizers.ShowOnConsole();
+                authorizers.ShowSummaryOnConsole();
             }
             catch (PinpadNotFoundException)
             {

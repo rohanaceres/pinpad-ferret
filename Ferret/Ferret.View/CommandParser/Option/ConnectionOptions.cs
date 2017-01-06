@@ -7,7 +7,7 @@ namespace Ferret.View.CommandParser.Options
     {
         [Option('c', "connect", Required = true, HelpText = "Command to connect to the pinpad.")]
         public bool Connect { get; set; }
-        [Option("all", Required = false)]
+        [Option("all", Required = false, DefaultValue = false)]
         public bool ConnectToAll { get; set; }
     }
 }
