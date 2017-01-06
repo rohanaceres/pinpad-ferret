@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MarkdownLog;
+using Ferret.View.KsnStuff;
 
 namespace Ferret.View.Extensions
 {
@@ -19,8 +20,10 @@ namespace Ferret.View.Extensions
                    })
                    .ToMarkdownTable());
         }
-        public static void ShowKsns(this ICollection<ICardPaymentAuthorizer> pinpads)
+        public static void ShowKsns(this ICollection<ICardPaymentAuthorizer> pinpads,
+            List<Acquirer> acquirers)
         {
+            // TODO: Mostrar dados do KSN.
             Console.WriteLine(
                    pinpads.Select(s => new
                    {

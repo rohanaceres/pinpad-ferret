@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Collections.ObjectModel;
 using Castle.MicroKernel;
+using Ferret.View.KsnStuff;
 
 namespace Ferret.View.Core.Services
 {
@@ -26,12 +27,14 @@ namespace Ferret.View.Core.Services
 
             if (this.TryGetPinpadsToScan(out pinpadsToScan) == false) { return; }
 
+            List<Acquirer> acquirers = new List<Acquirer>();
+
             foreach (ICardPaymentAuthorizer currentPinpad in pinpadsToScan)
             {
-                this.ScanPinpad(currentPinpad);
+                acquirers.Add(this.ScanPinpad(currentPinpad));
             }
 
-            pinpadsToScan.ShowKsns();
+            pinpadsToScan.ShowKsns(acquirers);
         }
 
         private bool TryGetPinpadsToScan(out ICollection<ICardPaymentAuthorizer> pinpadsToScan)
@@ -65,7 +68,7 @@ namespace Ferret.View.Core.Services
 
             return true;
         }
-        private void ScanPinpad (ICardPaymentAuthorizer pinpad)
+        private Acquirer ScanPinpad (ICardPaymentAuthorizer pinpad)
         {
             Console.WriteLine("Scanning pinpad attached to {0}...", pinpad.PinpadFacade
                 .Communication.PortName);
@@ -76,6 +79,10 @@ namespace Ferret.View.Core.Services
                 {
                     pinpad.PinpadFacade.Display.ShowMessage("", i.ToString(),
                         DisplayPaddingType.Center);
+
+                    // TODO: Enviar GDU.
+
+                    // TODO: Mapear dados.
                 }
             }
         }
