@@ -6,7 +6,7 @@ namespace Ferret.View
 {
     internal sealed class Ferret
     {
-        public static ICommand Commander { get; set; } = new Commander();
+        public static Commander Commander { get; set; } = new Commander();
 
         public static void DoIt ()
         {

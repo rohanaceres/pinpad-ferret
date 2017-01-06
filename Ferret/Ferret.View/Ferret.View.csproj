@@ -67,8 +67,8 @@
   <ItemGroup>
     <Compile Include="CommandParser\Base\IOptions.cs" />
     <Compile Include="CommandParser\Commander.cs" />
+    <Compile Include="Core\ServiceFactory.cs" />
     <Compile Include="CommandParser\Option\ConnectionOptions.cs" />
-    <Compile Include="CommandParser\Base\ICommand.cs" />
     <Compile Include="CommandParser\Option\ScanOptions.cs" />
     <Compile Include="Core\Base\IPinpadService.cs" />
     <Compile Include="Core\Services\PinpadConnectionService.cs" />
