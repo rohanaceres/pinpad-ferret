@@ -1,4 +1,6 @@
-﻿namespace Ferret.View.KsnStuff
+﻿using Ferret.View.KsnStuff.TypeCode;
+
+namespace Ferret.View.KsnStuff
 {
     /// <summary>
     /// Information obtained from the GDU command, from ABECS specs.
@@ -6,9 +8,19 @@
     internal struct Acquirer
     {
         /// <summary>
-        /// Acquirer name.
+        /// Acquirer name in upper case.
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this.AcquirerCode.ToString().ToUpper();
+            }
+        }
+        /// <summary>
+        /// Acquirer code.
+        /// </summary>
+        public AcquirerCode AcquirerCode { get; set; }
         /// <summary>
         /// Index on pinpad table.
         /// </summary>

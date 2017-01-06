@@ -148,6 +148,8 @@
     <Compile Include="Core\Services\ScreenCleaner.cs" />
     <Compile Include="Extensions\AuthorizerExtension.cs" />
     <Compile Include="KsnStuff\Acquirer.cs" />
+    <Compile Include="KsnStuff\AcquirerKeyMap.cs" />
+    <Compile Include="KsnStuff\TypeCode\AcquirerCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
