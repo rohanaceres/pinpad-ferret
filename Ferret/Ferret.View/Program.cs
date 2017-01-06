@@ -1,8 +1,4 @@
-﻿using CommandLine;
-using Ferret.View.CommandParser;
-using System;
-
-namespace Ferret.View
+﻿namespace Ferret.View
 {
     class Program
     {

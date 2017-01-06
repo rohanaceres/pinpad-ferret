@@ -1,5 +1,6 @@
-﻿using Ferret.View.CommandParser;
-using Ferret.View.CommandParser.Base;
+﻿using Castle.Windsor;
+using Ferret.View.CommandParser;
+using MicroPos.Platform.Desktop;
 using System;
 
 namespace Ferret.View
@@ -7,6 +8,12 @@ namespace Ferret.View
     internal sealed class Ferret
     {
         public static Commander Commander { get; set; } = new Commander();
+        public static IWindsorContainer Container { get; set; } = new WindsorContainer();
+
+        static Ferret()
+        {
+            DesktopInitializer.Initialize();
+        }
 
         public static void DoIt ()
         {
