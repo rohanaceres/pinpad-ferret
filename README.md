@@ -1,4 +1,4 @@
-# FERRET!
+# PINPAD FERRET!
 
 Plug and play tool to verify if an acquirer is supported by a specific pinpad, or a group or pinpads.
 
