@@ -14,7 +14,7 @@ namespace Ferret.View.Extensions
 
             foreach (AcquirerCode currentAcquirerName in acquirerValues)
             {
-                if (currentAcquirerName.ToString().Contains(self) == true)
+                if (currentAcquirerName.ToString().ToUpper().Contains(self.ToUpper()) == true)
                 {
                     return currentAcquirerName;
                 }

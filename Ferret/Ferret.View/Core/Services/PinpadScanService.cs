@@ -43,6 +43,9 @@ namespace Ferret.View.Core.Services
 
                 if (searchedAcquirer != AcquirerCode.Undefined)
                 {
+                    Console.WriteLine("{0} is supported!", this.scanOptions
+                        .SpecificAcquirerName.ToUpper());
+
                     pinpadsToScan.ShowKsn(acquirers
                         .Where(a => a.AcquirerCode == searchedAcquirer)
                         .FirstOrDefault());
