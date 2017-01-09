@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using Castle.MicroKernel;
 using Ferret.View.KsnStuff;
 using Pinpad.Sdk.Commands;
+using Pinpad.Sdk.Model.TypeCode;
+using Ferret.View.KsnStuff.TypeCode;
 
 namespace Ferret.View.Core.Services
 {
@@ -32,7 +34,7 @@ namespace Ferret.View.Core.Services
 
             foreach (ICardPaymentAuthorizer currentPinpad in pinpadsToScan)
             {
-                acquirers.AddRange(this.ScanPinpad(currentPinpad));
+                acquirers.AddRange(this.GetAcquirersFromPinpad(currentPinpad));
             }
 
             pinpadsToScan.ShowKsns(acquirers);
@@ -69,7 +71,7 @@ namespace Ferret.View.Core.Services
 
             return true;
         }
-        private List<Acquirer> ScanPinpad (ICardPaymentAuthorizer pinpad)
+        private List<Acquirer> GetAcquirersFromPinpad (ICardPaymentAuthorizer pinpad)
         {
             Console.WriteLine("Scanning pinpad attached to {0}...", pinpad.PinpadFacade
                 .Communication.PortName);
@@ -84,12 +86,47 @@ namespace Ferret.View.Core.Services
                         DisplayPaddingType.Center);
                 }
 
-                acquirers.Add(AcquirerKeyMap.Get(KeyManagementMode.DerivedUniqueKeyPerTransaction,
-                        CryptographyMode.DataEncryptionStandard));
-            }
+                Acquirer newAcquirer = this.GetAcquirer(pinpad, i);
 
+                if (newAcquirer != null)
+                {
+                    acquirers.Add(newAcquirer);
+                }
+            }
             
             return acquirers;
+        }
+        private Acquirer GetAcquirer (ICardPaymentAuthorizer pinpad, int index)
+        {
+            // Send GDU:
+            string desKsn = pinpad.PinpadFacade.Infos.GetDukptSerialNumber(index, 
+                CryptographyMode.DataEncryptionStandard);
+
+            string tdesKsn = pinpad.PinpadFacade.Infos.GetDukptSerialNumber(index,
+                CryptographyMode.TripleDataEncryptionStandard);
+            
+            // If there's no KSN in the index searched, that acquirer is not
+            // available for the pinpad:
+            if (string.IsNullOrEmpty(desKsn) == true && 
+                string.IsNullOrEmpty(tdesKsn) == true)
+            {
+                return null;
+            }
+
+            // Create acquirer:
+            Acquirer acquirer = new Acquirer();
+            acquirer.AcquirerCode = (AcquirerCode)index;
+            acquirer.Id = index;
+            acquirer.Ksns = new Dictionary<CryptographyMode, string>();
+            acquirer.PinpadSerialNumber = pinpad.PinpadFacade.Communication
+                .PortName;
+
+            // Add KSNs:
+            acquirer.Ksns.Add(CryptographyMode.DataEncryptionStandard, desKsn);
+            acquirer.Ksns.Add(CryptographyMode.TripleDataEncryptionStandard, tdesKsn);
+
+            // TODO: Mapear dados.
+            return acquirer;
         }
         private bool Validate()
         {

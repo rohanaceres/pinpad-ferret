@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MarkdownLog;
 using Ferret.View.KsnStuff;
+using Pinpad.Sdk.Model.TypeCode;
 
 namespace Ferret.View.Extensions
 {
@@ -35,12 +36,14 @@ namespace Ferret.View.Extensions
         public static void ShowKsns(this ICollection<ICardPaymentAuthorizer> pinpads,
             List<Acquirer> acquirers)
         {
-            // TODO: Mostrar dados do KSN.
             Console.WriteLine(
-                    pinpads.Select(s => new
+                    acquirers.Select(a => new
                     {
-                        PortName = s.PinpadFacade.Communication.PortName,
-                        SerialNumber = s.PinpadFacade.Infos.SerialNumber.Replace(" ", "")
+                        SerialNumber = a.PinpadSerialNumber,
+                        Index = a.Id,
+                        AcquirerName = a.Name,
+                        KsnDES = a.Ksns[CryptographyMode.DataEncryptionStandard],
+                        Ksn3DES = a.Ksns[CryptographyMode.TripleDataEncryptionStandard]
                     })
                 .ToMarkdownTable());
         }

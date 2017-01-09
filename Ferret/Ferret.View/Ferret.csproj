@@ -83,13 +83,11 @@
       <HintPath>..\packages\MicroPos.Desktop.Pack.2.8.0\lib\net45\MicroPos.Platform.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Pinpad.Sdk, Version=2.12.0.0, Culture=neutral, PublicKeyToken=cbdc063925c03358, processorArchitecture=MSIL">
-      <HintPath>..\packages\MicroPos.Desktop.Pack.2.8.0\lib\net45\Pinpad.Sdk.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Pinpad.Sdk">
+      <HintPath>..\..\..\..\buy4-workspace-micropos\pinpad-sdk\Pinpad.Sdk\bin\Debug\Pinpad.Sdk.dll</HintPath>
     </Reference>
-    <Reference Include="Pinpad.Sdk.Model, Version=2.12.0.0, Culture=neutral, PublicKeyToken=d3ab5135d4a3f3fd, processorArchitecture=MSIL">
-      <HintPath>..\packages\MicroPos.Desktop.Pack.2.8.0\lib\net45\Pinpad.Sdk.Model.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Pinpad.Sdk.Model">
+      <HintPath>..\..\..\..\buy4-workspace-micropos\pinpad-sdk\Pinpad.Sdk\bin\Debug\Pinpad.Sdk.Model.dll</HintPath>
     </Reference>
     <Reference Include="Poi.Sdk, Version=1.5.1.0, Culture=neutral, PublicKeyToken=db6dd16e1146c3af, processorArchitecture=MSIL">
       <HintPath>..\packages\MicroPos.Desktop.Pack.2.8.0\lib\net45\Poi.Sdk.dll</HintPath>
@@ -148,7 +146,6 @@
     <Compile Include="Core\Services\ScreenCleaner.cs" />
     <Compile Include="Extensions\AuthorizerExtension.cs" />
     <Compile Include="KsnStuff\Acquirer.cs" />
-    <Compile Include="KsnStuff\AcquirerKeyMap.cs" />
     <Compile Include="KsnStuff\TypeCode\AcquirerCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
