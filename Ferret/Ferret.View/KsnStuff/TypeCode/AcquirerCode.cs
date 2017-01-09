@@ -88,6 +88,10 @@
         /// <summary>
         /// Safra code on encryption or data key map.
         /// </summary>
-        Safra = 20
+        Safra = 20,
+        /// <summary>
+        /// Bonsucesso code on encryption or data key map.
+        /// </summary>
+        Bonsucesso = 21
     }
 }
