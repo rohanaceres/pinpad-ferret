@@ -36,16 +36,31 @@ namespace Ferret.View.Extensions
         public static void ShowKsns(this ICollection<ICardPaymentAuthorizer> pinpads,
             List<Acquirer> acquirers)
         {
-            Console.WriteLine(
-                    acquirers.Select(a => new
-                    {
-                        SerialNumber = a.PinpadSerialNumber,
-                        Index = a.Id,
-                        AcquirerName = a.Name,
-                        KsnDES = a.Ksns[CryptographyMode.DataEncryptionStandard],
-                        Ksn3DES = a.Ksns[CryptographyMode.TripleDataEncryptionStandard]
-                    })
-                .ToMarkdownTable());
+            if (acquirers == null || acquirers.Count <= 0)
+            {
+                Console.WriteLine("Acquirers not found!");
+            }
+            else
+            {
+                Console.WriteLine(
+                        acquirers.Select(a => new
+                        {
+                            SerialNumber = a.PinpadSerialNumber,
+                            Index = a.Id,
+                            AcquirerName = a.Name,
+                            KsnDES = a.Ksns[CryptographyMode.DataEncryptionStandard],
+                            Ksn3DES = a.Ksns[CryptographyMode.TripleDataEncryptionStandard]
+                        })
+                    .ToMarkdownTable());
+            }
+        }
+        public static void ShowKsn(this ICollection<ICardPaymentAuthorizer> pinpads,
+            Acquirer acquirer)
+        {
+            List<Acquirer> acquirerList = new List<Acquirer>();
+            acquirerList.Add(acquirer);
+
+            pinpads.ShowKsns(acquirerList);
         }
     }
 }

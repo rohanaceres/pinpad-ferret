@@ -38,5 +38,7 @@ namespace Ferret.View.CommandParser.Options
         /// </summary>
         [Option('l', "log", Required = false)]
         public bool ShowProgress { get; set; }
+        [Option("hasAcquirer", Required = false)]
+        public string SpecificAcquirerName { get; set; }
     }
 }

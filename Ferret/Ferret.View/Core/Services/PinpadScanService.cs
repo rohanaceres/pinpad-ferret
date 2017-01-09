@@ -10,7 +10,6 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using Castle.MicroKernel;
 using Ferret.View.KsnStuff;
-using Pinpad.Sdk.Commands;
 using Pinpad.Sdk.Model.TypeCode;
 using Ferret.View.KsnStuff.TypeCode;
 
@@ -37,7 +36,22 @@ namespace Ferret.View.Core.Services
                 acquirers.AddRange(this.GetAcquirersFromPinpad(currentPinpad));
             }
 
-            pinpadsToScan.ShowKsns(acquirers);
+            if (string.IsNullOrEmpty(this.scanOptions.SpecificAcquirerName) == false)
+            {
+                AcquirerCode searchedAcquirer = this.scanOptions.SpecificAcquirerName
+                    .ToAcquirerCode();
+
+                if (searchedAcquirer != AcquirerCode.Undefined)
+                {
+                    pinpadsToScan.ShowKsn(acquirers
+                        .Where(a => a.AcquirerCode == searchedAcquirer)
+                        .FirstOrDefault());
+                }
+            }
+            else
+            {
+                pinpadsToScan.ShowKsns(acquirers);
+            }
         }
 
         private bool TryGetPinpadsToScan(out ICollection<ICardPaymentAuthorizer> pinpadsToScan)
@@ -71,7 +85,7 @@ namespace Ferret.View.Core.Services
 
             return true;
         }
-        private List<Acquirer> GetAcquirersFromPinpad (ICardPaymentAuthorizer pinpad)
+        internal List<Acquirer> GetAcquirersFromPinpad (ICardPaymentAuthorizer pinpad)
         {
             Console.WriteLine("Scanning pinpad attached to {0}...", pinpad.PinpadFacade
                 .Communication.PortName);
