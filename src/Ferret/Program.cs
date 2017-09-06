@@ -1,6 +1,8 @@
 ﻿using Ferret.Core.Services;
 using Microtef.Platform.Desktop;
 using System;
+using System.Globalization;
+using System.Threading;
 
 namespace Ferret
 {
@@ -9,6 +11,7 @@ namespace Ferret
         static void Main(string[] args)
         {
             DesktopInitializer.Initialize();
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
             DoIt();
         }

@@ -105,18 +105,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandParser\Commander.cs" />
-    <Compile Include="CommandParser\Options\ConnectionOptions.cs" />
+    <Compile Include="CommandParser\Options\ConnectionOption.cs" />
     <Compile Include="CommandParser\Options\AbstractOption.cs" />
     <Compile Include="CommandParser\Options\GenericOption.cs" />
-    <Compile Include="CommandParser\Options\ScanOptions.cs" />
+    <Compile Include="CommandParser\Options\PayOption.cs" />
+    <Compile Include="CommandParser\Options\ScanOption.cs" />
     <Compile Include="DependencyInjection\IoC.cs" />
     <Compile Include="Extensions\AuthorizerExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Extensions\TransactionEntryExtension.cs" />
     <Compile Include="Ksn\Acquirer.cs" />
     <Compile Include="Ksn\AcquirerCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CleanConsoleService.cs" />
     <Compile Include="Services\IPinpadService.cs" />
+    <Compile Include="Services\PayService.cs" />
     <Compile Include="Services\PinpadConnectionService.cs" />
     <Compile Include="Services\PinpadScanService.cs" />
     <Compile Include="Services\ServiceFactory.cs" />

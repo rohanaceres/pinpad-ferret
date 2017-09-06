@@ -8,8 +8,7 @@ namespace Ferret.Core.Services
     {
         public string CommandName => "clear";
 
-        public AbstractOption Options { get; private set; } 
-            = new GenericOption();
+        public AbstractOption Options => new GenericOption();
 
         public void Execute()
         {
@@ -18,7 +17,7 @@ namespace Ferret.Core.Services
 
         public bool IsServiceFromCommandLineArgs(string[] args)
         {
-            return args?[0] == this.CommandName;
+            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }

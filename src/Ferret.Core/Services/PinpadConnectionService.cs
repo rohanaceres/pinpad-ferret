@@ -21,8 +21,7 @@ namespace Ferret.Core.Services
         /// Define the set of arguments that should be filled to connect to one 
         /// or more pinpads.
         /// </summary>
-        public AbstractOption Options { get; private set; } 
-            = new ConnectionOptions();
+        public AbstractOption Options => new ConnectionOption();
 
         /// <summary>
         /// Connects to one or more pinpads.
@@ -30,7 +29,7 @@ namespace Ferret.Core.Services
         /// </summary>
         public void Execute()
         {
-            ConnectionOptions connOptions = this.Options as ConnectionOptions;
+            ConnectionOption connOptions = this.Options as ConnectionOption;
 
             if (connOptions == null) { return; }
 
@@ -64,7 +63,7 @@ namespace Ferret.Core.Services
 
         public bool IsServiceFromCommandLineArgs(string[] args)
         {
-            return args?[0] == this.CommandName;
+            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }

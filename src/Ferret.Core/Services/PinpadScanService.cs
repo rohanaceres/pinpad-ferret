@@ -15,8 +15,8 @@ namespace Ferret.Core.Services
     internal sealed class PinpadScanService : IPinpadService
     {
         public string CommandName => "scan";
-        private ScanOptions scanOptions = new ScanOptions();
-        public AbstractOption Options { get { return this.scanOptions; } } 
+        private ScanOption scanOptions = new ScanOption();
+        public AbstractOption Options => this.scanOptions;
 
         // TODO: Implementar.
         public void Execute()
@@ -172,7 +172,7 @@ namespace Ferret.Core.Services
 
         public bool IsServiceFromCommandLineArgs(string[] args)
         {
-            return args?[0] == this.CommandName;
+            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }

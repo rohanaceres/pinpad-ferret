@@ -11,13 +11,13 @@ namespace Ferret.Core
     /// <summary>
     /// Stuff easely do with <see cref="ICardPaymentAuthorizer"/>.
     /// </summary>
-    internal static class AuthorizerExtension
+    static internal class AuthorizerExtension
     {
         /// <summary>
         /// Show a brief description to each pinpad.
         /// </summary>
         /// <param name="pinpads">Pinpads to log on console.</param>
-        public static void ShowSummaryOnConsole(this ICollection<ICardPaymentAuthorizer> pinpads)
+        static public void ShowSummaryOnConsole(this ICollection<ICardPaymentAuthorizer> pinpads)
         {
             Console.WriteLine(
                    pinpads.Select(s => new
@@ -33,7 +33,7 @@ namespace Ferret.Core
         /// </summary>
         /// <param name="pinpads">Pinpads to log on console.</param>
         /// <param name="acquirers">KSN information obtained from ABECS GDU command.</param>
-        public static void ShowKsns(this ICollection<ICardPaymentAuthorizer> pinpads,
+        static public void ShowKsns(this ICollection<ICardPaymentAuthorizer> pinpads,
             List<Acquirer> acquirers)
         {
             if (acquirers == null || acquirers.Count <= 0)
@@ -54,7 +54,7 @@ namespace Ferret.Core
                     .ToMarkdownTable());
             }
         }
-        public static void ShowKsn(this ICollection<ICardPaymentAuthorizer> pinpads,
+        static public void ShowKsn(this ICollection<ICardPaymentAuthorizer> pinpads,
             Acquirer acquirer)
         {
             List<Acquirer> acquirerList = new List<Acquirer>();

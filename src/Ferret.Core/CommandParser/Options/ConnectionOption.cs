@@ -5,7 +5,7 @@ namespace Ferret.Core.CommandParser.Options
     /// <summary>
     /// Set of options to connect to one or more pinpads.
     /// </summary>
-    internal sealed class ConnectionOptions : AbstractOption
+    internal sealed class ConnectionOption : AbstractOption
     {
         /// <summary>
         /// Option to specify that all COM ports of the machine will be searched.

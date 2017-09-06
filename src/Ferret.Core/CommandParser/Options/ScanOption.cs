@@ -7,7 +7,7 @@ namespace Ferret.Core.CommandParser.Options
     /// This is useful to verify whether an acquirer is supported by the pinpad
     /// ore not.
     /// </summary>
-    internal sealed class ScanOptions : AbstractOption
+    internal sealed class ScanOption : AbstractOption
     {
         /// <summary>
         /// Option to specify that all pinpads connected will be scanned.
@@ -18,18 +18,18 @@ namespace Ferret.Core.CommandParser.Options
         /// Option to specify the COM port of a unique pinpad.
         /// In this case, this will be the only pinpad to scan.
         /// </summary>
-        [Option('p', "port", Required = false)]
+        [Option("port", Required = false)]
         public string PinpadToScanConnectionName { get; set; }
         /// <summary>
         /// Specify the table range (inside pinpad memory) to scan.
         /// </summary>
-        [OptionArray('r', "ranges", Required = false)]
+        [OptionArray("ranges", Required = false)]
         public int[] Ranges { get; set; }
         /// <summary>
         /// If scanning progress should be shown on pinpad screen.
         /// It will delay the process.
         /// </summary>
-        [Option('l', "log", Required = false)]
+        [Option("log", Required = false)]
         public bool ShowProgress { get; set; }
         /// <summary>
         /// Acquirer name, if any.

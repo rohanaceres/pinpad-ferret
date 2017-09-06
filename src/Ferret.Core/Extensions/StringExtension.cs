@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Ferret.Core
 {
-    internal static class StringExtension
+    static internal class StringExtension
     {
-        public static AcquirerCode ToAcquirerCode(this string self)
+        static public AcquirerCode ToAcquirerCode(this string self)
         {
             AcquirerCode[] acquirerValues = Enum.GetValues(typeof(AcquirerCode))
                 .Cast<AcquirerCode>()
