@@ -118,6 +118,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CleanConsoleService.cs" />
     <Compile Include="Services\CoreService.cs" />
+    <Compile Include="Services\ExitService.cs" />
     <Compile Include="Services\IPinpadService.cs" />
     <Compile Include="Services\PayService.cs" />
     <Compile Include="Services\PinpadConnectionService.cs" />

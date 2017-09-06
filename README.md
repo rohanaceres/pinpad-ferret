@@ -90,6 +90,14 @@ Cleans the console.
 $ ferret clean
 ```
 
+### Exit command
+
+Exit the application.
+
+```
+$ ferret exit
+```
+
 ## Me
 
 If you want to talk to me, use telegram (rohanaceres) or [mail me](mailto:ceresrohana+ferret@gmail.com).
