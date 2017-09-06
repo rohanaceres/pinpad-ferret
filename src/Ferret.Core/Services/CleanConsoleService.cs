@@ -4,20 +4,13 @@ using System;
 namespace Ferret.Core.Services
 {
     // TODO: Doc
-    internal sealed class CleanConsoleService : IPinpadService
+    internal sealed class CleanConsoleService : CoreService<GenericOption>, IPinpadService
     {
-        public string CommandName => "clear";
+        public override string CommandName => "clear";
 
-        public AbstractOption Options => new GenericOption();
-
-        public void Execute()
+        public override void ConcreteExecute()
         {
             Console.Clear();
-        }
-
-        public bool IsServiceFromCommandLineArgs(string[] args)
-        {
-            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }

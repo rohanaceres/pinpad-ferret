@@ -12,22 +12,17 @@ namespace Ferret.Core.Services
     /// <summary>
     /// Connects to one or more pinpads attached to the machine.
     /// </summary>
-    internal sealed class PinpadConnectionService : IPinpadService
+    internal sealed class PinpadConnectionService : CoreService<ConnectionOption>, IPinpadService
     {
-        public string CommandName => "connect";
         public const string StoneCode = "407709482";
 
-        /// <summary>
-        /// Define the set of arguments that should be filled to connect to one 
-        /// or more pinpads.
-        /// </summary>
-        public AbstractOption Options => new ConnectionOption();
+        public override string CommandName => "connect";
 
         /// <summary>
         /// Connects to one or more pinpads.
         /// Adds the pinpad(s) connected to the IoC.
         /// </summary>
-        public void Execute()
+        public override void ConcreteExecute()
         {
             ConnectionOption connOptions = this.Options as ConnectionOption;
 
@@ -59,11 +54,6 @@ namespace Ferret.Core.Services
             {
                 Console.WriteLine("None pinpad found.");
             }
-        }
-
-        public bool IsServiceFromCommandLineArgs(string[] args)
-        {
-            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }

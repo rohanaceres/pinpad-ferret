@@ -35,17 +35,8 @@ namespace Ferret
                 string[] args = input.Split(' ');
 
                 // Executa uma ação de acordo com os argumentos lidos da linha de comando:
-                IPinpadService service = ServiceFactory.Create(args);
-
-                if (service != null)
-                {
-                    service.Execute();
-                }
-                else
-                {
-                    // TODO: Adicionar arquivo help.
-                    Console.WriteLine("Invalid arguments.");
-                }
+                ServiceFactory.Create(args)
+                              ?.Execute(args);
             }
             while (finish == false);
         }

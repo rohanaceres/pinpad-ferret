@@ -22,11 +22,12 @@ namespace Ferret.Core.Services
         /// </summary>
         static ServiceFactory()
         {
-            // Seleciona todas as classes que herdam de IPinpadService:
+            // Selects all classes that inherit from IPinpadService and are not abstract:
             ServiceFactory.AvailableServices = Assembly.GetExecutingAssembly()
                 .GetTypes()
                 .Where(t => t.GetInterfaces()
-                    .Contains(typeof(IPinpadService)))
+                             .Contains(typeof(IPinpadService)))
+                .Where(t => t.GetTypeInfo().IsAbstract == false)
                 .Select(currentType => Activator.CreateInstance(currentType) as IPinpadService)
                 .ToList();
         }
@@ -43,8 +44,7 @@ namespace Ferret.Core.Services
             IPinpadService service = ServiceFactory.AvailableServices
                 .Where(s =>
                 {
-                    return s.IsServiceFromCommandLineArgs(args)
-                           && CommandLine.Parser.Default.ParseArguments(args, s.Options) == true;
+                    return s.IsServiceFromCommandLineArgs(args) == true;
                 })
                 .FirstOrDefault();
 

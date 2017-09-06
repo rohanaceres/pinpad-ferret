@@ -10,15 +10,13 @@ using System.Linq;
 
 namespace Ferret.Core.Services
 {
-    internal sealed class PayService : IPinpadService
+    internal sealed class PayService : CoreService<PayOption>, IPinpadService
     {
-        public string CommandName => "pay";
-        public AbstractOption Options { get; set; } 
-            = new PayOption();
+        public override string CommandName => "pay";
 
         static public List<IAuthorizationReport> Transactions => new List<IAuthorizationReport>();
 
-        public void Execute()
+        public override void ConcreteExecute()
         {
             var option = this.Options as PayOption;
             var authorizer = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>()
@@ -65,11 +63,6 @@ namespace Ferret.Core.Services
                     Console.WriteLine($"RESPONSE STATUS: {responseStatus.ToString()}, {responseStatus.GetHashCode()}.");
                 }
             }
-        }
-
-        public bool IsServiceFromCommandLineArgs(string[] args)
-        {
-            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }

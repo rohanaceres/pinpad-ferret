@@ -12,14 +12,12 @@ using System.Linq;
 
 namespace Ferret.Core.Services
 {
-    internal sealed class PinpadScanService : IPinpadService
+    internal sealed class PinpadScanService : CoreService<ScanOption>, IPinpadService
     {
-        public string CommandName => "scan";
-        private ScanOption scanOptions = new ScanOption();
-        public AbstractOption Options => this.scanOptions;
+        public override string CommandName => "scan";
 
         // TODO: Implementar.
-        public void Execute()
+        public override void ConcreteExecute()
         {
             if (this.Validate() == false) { return; }
 
@@ -34,14 +32,14 @@ namespace Ferret.Core.Services
                 acquirers.AddRange(this.GetAcquirersFromPinpad(currentPinpad));
             }
 
-            if (string.IsNullOrEmpty(this.scanOptions.SpecificAcquirerName) == false)
+            if (string.IsNullOrEmpty(this.Options.SpecificAcquirerName) == false)
             {
-                AcquirerCode searchedAcquirer = this.scanOptions.SpecificAcquirerName
+                AcquirerCode searchedAcquirer = this.Options.SpecificAcquirerName
                     .ToAcquirerCode();
 
                 if (searchedAcquirer != AcquirerCode.Undefined)
                 {
-                    Console.WriteLine("{0} is supported!", this.scanOptions
+                    Console.WriteLine("{0} is supported!", this.Options
                         .SpecificAcquirerName.ToUpper());
 
                     pinpadsToScan.ShowKsn(acquirers
@@ -57,19 +55,19 @@ namespace Ferret.Core.Services
 
         private bool TryGetPinpadsToScan(out ICollection<ICardPaymentAuthorizer> pinpadsToScan)
         {
-            if (this.scanOptions.ScanAll == true)
+            if (this.Options.ScanAll == true)
             {
                 pinpadsToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>();
             }
-            else if (string.IsNullOrEmpty(this.scanOptions.PinpadToScanConnectionName) == false)
+            else if (string.IsNullOrEmpty(this.Options.PinpadToScanConnectionName) == false)
             {
                 ICardPaymentAuthorizer pinpadToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>()
-                    .Where(p => p.PinpadFacade.Communication.ConnectionName == this.scanOptions.PinpadToScanConnectionName)
+                    .Where(p => p.PinpadFacade.Communication.ConnectionName == this.Options.PinpadToScanConnectionName)
                     .FirstOrDefault();
 
                 if (pinpadToScan == null)
                 {
-                    Console.WriteLine("Pinpad not found at port {0}.", this.scanOptions.PinpadToScanConnectionName);
+                    Console.WriteLine("Pinpad not found at port {0}.", this.Options.PinpadToScanConnectionName);
                     pinpadsToScan = null;
                     return false;
                 }
@@ -93,9 +91,9 @@ namespace Ferret.Core.Services
 
             List<Acquirer> acquirers = new List<Acquirer>();
 
-            for (int i = this.scanOptions.Ranges[0]; i < this.scanOptions.Ranges[1]; i++)
+            for (int i = this.Options.Ranges[0]; i < this.Options.Ranges[1]; i++)
             {
-                if (this.scanOptions.ShowProgress == true)
+                if (this.Options.ShowProgress == true)
                 {
                     pinpad.PinpadFacade.Display.ShowMessage("", i.ToString(),
                         DisplayPaddingType.Center);
@@ -145,7 +143,7 @@ namespace Ferret.Core.Services
         }
         private bool Validate()
         {
-            if (this.scanOptions == null) { return false; }
+            if (this.Options == null) { return false; }
 
             try
             {
@@ -157,22 +155,17 @@ namespace Ferret.Core.Services
                 return false;
             }
 
-            if (this.scanOptions.ScanAll == true)
+            if (this.Options.ScanAll == true)
             {
-                this.scanOptions.Ranges = new int[] { 1, 99 };
+                this.Options.Ranges = new int[] { 1, 99 };
             }
-            else if (this.scanOptions.Ranges == null || this.scanOptions.Ranges.Length <= 0)
+            else if (this.Options.Ranges == null || this.Options.Ranges.Length <= 0)
             {
                 Console.WriteLine("Scanning range is missing.");
                 return false;
             }
 
             return true;
-        }
-
-        public bool IsServiceFromCommandLineArgs(string[] args)
-        {
-            return args?[0].ToUpper() == this.CommandName.ToUpper();
         }
     }
 }
