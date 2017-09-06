@@ -21,7 +21,8 @@ namespace Ferret.Core.Services
         /// Define the set of arguments that should be filled to connect to one 
         /// or more pinpads.
         /// </summary>
-        public AbstractOption Options { get; private set; } = new ConnectionOptions();
+        public AbstractOption Options { get; private set; } 
+            = new ConnectionOptions();
 
         /// <summary>
         /// Connects to one or more pinpads.
