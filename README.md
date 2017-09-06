@@ -16,7 +16,7 @@ MarkdownLog | To show awesome tables on console | [Here](https://www.nuget.org/p
 
 The Ferret currently support the following operations:
 
-### Connect
+### :rainbow: Connect
 
 Connects to one os multiple pinpads.
 
@@ -33,7 +33,7 @@ Command | Description
 `$ ferret connect` | Connects to the first pinpad found on the machine
 `$ ferret connect --all` | Connects to all pinpads found on the machine
 
-### Scan
+### :rainbow: Scan
 
 Scan all acquirers in the pinpad.
 
@@ -58,7 +58,7 @@ Command | Description
 `$ ferret scan --all --log` | Scan all pinpads already connected. Shows scan progress.
 `$ ferret scan --all --hasAcquirer Stone` | Scan all pinpads already connected. Shows if the specified acquirer is supported by each pinpad.
 
-### Pay
+### :rainbow: Pay
 
 Executes a monetary transaction in the pinpad. The pinpad used in the transaction is the first found in the machine (or the only one connected to it).
 
@@ -80,7 +80,7 @@ Command | Description
 `$ ferret pay --amount --itk MY_TRANSACTION_ID` | Initiates a transaction with the amount of R$ 10. The transaction identifier will be set as **MY_TRANSACTION_ID**.
 `$ ferret pay --showTransactions` | Shows all transactions already approved by the application.
 
-### Clean
+### :rainbow: Clean
 
 Cleans the console.
 
@@ -90,7 +90,7 @@ Cleans the console.
 $ ferret clean
 ```
 
-### Exit command
+### :rainbow: Exit command
 
 Exit the application.
 
