@@ -1,5 +1,9 @@
-﻿using System;
-using Ferret.Core.CommandParser.Options;
+﻿using Ferret.Core.CommandParser.Options;
+using Ferret.Core.DependencyInjection;
+using Microtef.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Ferret.Core.Services
 {
@@ -9,6 +13,13 @@ namespace Ferret.Core.Services
 
         public override void ConcreteExecute()
         {
+            List<ICardPaymentAuthorizer> pinpadsToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>()
+                .ToList();
+
+            pinpadsToScan.ForEach(p =>
+                p.PinpadFacade.Communication.ClosePinpadConnection(p.PinpadMessages.MainLabel)
+            );
+
             Environment.Exit(0);
         }
     }
