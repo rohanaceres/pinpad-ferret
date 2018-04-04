@@ -21,9 +21,7 @@ namespace Ferret.Core.Services
         {
             if (this.Validate() == false) { return; }
 
-            ICollection<ICardPaymentAuthorizer> pinpadsToScan;
-
-            if (this.TryGetPinpadsToScan(out pinpadsToScan) == false) { return; }
+            if (this.TryGetPinpadsToScan(out ICollection<ICardPaymentAuthorizer> pinpadsToScan) == false) { return; }
 
             List<Acquirer> acquirers = new List<Acquirer>();
 
@@ -62,6 +60,8 @@ namespace Ferret.Core.Services
 
             List<Acquirer> acquirers = new List<Acquirer>();
 
+            pinpad.PinpadFacade.Display.ShowMessage(pinpad.PinpadMessages.ProcessingMessage);
+
             for (int i = this.Options.Ranges[0]; i < this.Options.Ranges[1]; i++)
             {
                 if (this.Options.ShowProgress == true)
@@ -77,7 +77,9 @@ namespace Ferret.Core.Services
                     acquirers.Add(newAcquirer);
                 }
             }
-            
+
+            pinpad.PinpadFacade.Display.ShowMessage(pinpad.PinpadMessages.MainLabel);
+
             return acquirers;
         }
 

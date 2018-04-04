@@ -1,5 +1,4 @@
 ﻿using System;
-using Ferret.Core.CommandParser.Options;
 
 namespace Ferret.Core.Services
 {
@@ -8,6 +7,7 @@ namespace Ferret.Core.Services
         where TOption : new()
     {
         abstract public string CommandName { get; }
+
         /// <summary>
         /// Define the set of arguments that should be filled to perform the 
         /// <see cref="Execute"/> method.
@@ -38,6 +38,7 @@ namespace Ferret.Core.Services
 
             return true;
         }
+
         abstract public void ConcreteExecute();
 
         public bool IsServiceFromCommandLineArgs(string[] args)
