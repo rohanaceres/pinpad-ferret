@@ -16,7 +16,6 @@ namespace Ferret.Core.Services
     {
         public override string CommandName => "scan";
 
-        // TODO: Implementar.
         public override void ConcreteExecute()
         {
             if (this.Validate() == false) { return; }
@@ -39,12 +38,15 @@ namespace Ferret.Core.Services
 
                 if (searchedAcquirer != AcquirerCode.Undefined)
                 {
-                    Console.WriteLine("{0} is supported!", this.Options
-                        .SpecificAcquirerName.ToUpper());
+                    Console.WriteLine($"{this.Options.SpecificAcquirerName.ToUpper()} is supported!");
 
                     pinpadsToScan.ShowKsn(acquirers
                         .Where(a => a.AcquirerCode == searchedAcquirer)
                         .FirstOrDefault());
+                }
+                else
+                {
+                    Console.WriteLine($"{searchedAcquirer} is NOT supported by this pinpad.");
                 }
             }
             else
@@ -53,41 +55,9 @@ namespace Ferret.Core.Services
             }
         }
 
-        private bool TryGetPinpadsToScan(out ICollection<ICardPaymentAuthorizer> pinpadsToScan)
-        {
-            if (this.Options.ScanAll == true)
-            {
-                pinpadsToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>();
-            }
-            else if (string.IsNullOrEmpty(this.Options.PinpadToScanConnectionName) == false)
-            {
-                ICardPaymentAuthorizer pinpadToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>()
-                    .Where(p => p.PinpadFacade.Communication.ConnectionName == this.Options.PinpadToScanConnectionName)
-                    .FirstOrDefault();
-
-                if (pinpadToScan == null)
-                {
-                    Console.WriteLine("Pinpad not found at port {0}.", this.Options.PinpadToScanConnectionName);
-                    pinpadsToScan = null;
-                    return false;
-                }
-
-                pinpadsToScan = new Collection<ICardPaymentAuthorizer>();
-                pinpadsToScan.Add(pinpadToScan);
-            }
-            else
-            {
-                Console.WriteLine("COM port name is missing.");
-                pinpadsToScan = null;
-                return false;
-            }
-
-            return true;
-        }
         internal List<Acquirer> GetAcquirersFromPinpad (ICardPaymentAuthorizer pinpad)
         {
-            Console.WriteLine("Scanning pinpad attached to {0}...", pinpad.PinpadFacade
-                .Communication.ConnectionName);
+            Console.WriteLine($"Scanning pinpad attached to {pinpad.PinpadFacade.Communication.ConnectionName}...");
 
             List<Acquirer> acquirers = new List<Acquirer>();
 
@@ -109,6 +79,39 @@ namespace Ferret.Core.Services
             
             return acquirers;
         }
+
+        private bool TryGetPinpadsToScan(out ICollection<ICardPaymentAuthorizer> pinpadsToScan)
+        {
+            if (this.Options.ScanAll == true)
+            {
+                pinpadsToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>();
+            }
+            else if (string.IsNullOrEmpty(this.Options.PinpadToScanConnectionName) == false)
+            {
+                ICardPaymentAuthorizer pinpadToScan = IoC.Container.Resolve<ICollection<ICardPaymentAuthorizer>>()
+                    .Where(p => p.PinpadFacade.Communication.ConnectionName == this.Options.PinpadToScanConnectionName)
+                    .FirstOrDefault();
+
+                if (pinpadToScan == null)
+                {
+                    Console.WriteLine($"Pinpad not found at port {this.Options.PinpadToScanConnectionName}.");
+                    pinpadsToScan = null;
+                    return false;
+                }
+
+                pinpadsToScan = new Collection<ICardPaymentAuthorizer>();
+                pinpadsToScan.Add(pinpadToScan);
+            }
+            else
+            {
+                Console.WriteLine("COM port name is missing.");
+                pinpadsToScan = null;
+                return false;
+            }
+
+            return true;
+        }
+
         private Acquirer GetAcquirer (ICardPaymentAuthorizer pinpad, int index)
         {
             // Send GDU:
@@ -141,6 +144,7 @@ namespace Ferret.Core.Services
             // TODO: Mapear dados.
             return acquirer;
         }
+
         private bool Validate()
         {
             if (this.Options == null) { return false; }
