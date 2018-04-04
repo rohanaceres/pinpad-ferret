@@ -38,9 +38,22 @@ namespace Ferret.Core.Services
                 }
                 else
                 {
-                    authorizers = new Collection<ICardPaymentAuthorizer>();
-
-                    authorizers.Add(DeviceProvider.ActivateAndGetOneOrFirst(PinpadConnectionService.StoneCode));
+                    authorizers = new Collection<ICardPaymentAuthorizer>
+                    {
+                        DeviceProvider.ActivateAndGetOneOrFirst(
+                            PinpadConnectionService.StoneCode,
+                            new DisplayableMessages
+                            {
+                                MainLabel = "dont be in a box",
+                                CreditLabel = "credit",
+                                DebitLabel = "debit",
+                                ApprovedMessage = "approved :-)",
+                                DeclinedMessage = "declined :-(",
+                                ProcessingMessage = "wait...",
+                                TransactionTypeMenuLabel = "trnx type",
+                                InitializationMessage = "wait..."
+                            })
+                    };
                 }
 
                 IoC.Container.Register(

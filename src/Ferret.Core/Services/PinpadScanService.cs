@@ -12,6 +12,7 @@ using System.Linq;
 
 namespace Ferret.Core.Services
 {
+    // TODO: Doc
     internal sealed class PinpadScanService : CoreService<ScanOption>, IPinpadService
     {
         public override string CommandName => "scan";
